@@ -27,7 +27,15 @@ const getAllUsers = async () => {
 }
 
 const getUserById = async (id: number) => {
-    const reusult = await prisma.user.findUnique({ where: { id } })
+    const reusult = await prisma.user.findUnique({
+        where: { id }, select: {
+            id: true,
+            name: true,
+            email: true,
+            phone: true,
+            posts: true
+        }
+    },)
     return reusult
 }
 export const userService = {
