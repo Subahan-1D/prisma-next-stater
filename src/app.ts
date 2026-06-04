@@ -1,6 +1,7 @@
 import compression from "compression";
 import cors from "cors";
 import express from "express";
+import { userRoute } from "./modules/user/user.route";
 
 const app = express();
 
@@ -9,6 +10,9 @@ app.use(cors()); // Enables Cross-Origin Resource Sharing
 app.use(compression()); // Compresses response bodies for faster delivery
 app.use(express.json()); // Parse incoming JSON requests
 
+// Importing routes
+
+app.use("/api/v1/user", userRoute)
 app.use(
   cors({
     origin: "http://localhost:3000",
