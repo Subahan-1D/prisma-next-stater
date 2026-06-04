@@ -2,24 +2,35 @@ import { Request, Response } from "express";
 import { userService } from "./user.service";
 
 
-const createUser = async (req: Request, res: Response) => {
+const createUsers = async (req: Request, res: Response) => {
     try {
         const result = await userService.createUser(req.body)
-        res.send(result)
+        res.status(201).json(result)
 
     } catch (error) {
-        console.log("Error creating user", error)
+       res.status(500).send(error)
     }
 }
 
 const getAllUsers = async (req: Request, res: Response) => {
     try {
         const result = await userService.getAllUsers()
-        res.send(result)
+        res.status(201).json(result)
         console.log("all data fatched successfully", result)
 
     } catch (error) {
-        console.log("data fatching feled!!!")
+      res.status(500).send(error)
+    }
+}
+
+const getUserById = async (req: Request, res: Response) => {
+    try {
+        const id = parseInt(req.params.id as string)
+        const result = await userService.getUserById(id)
+        res.status(201).json(result)
+        console.log("data fatched successfully", result)
+    } catch (error) {
+        res.status(500).send(error)
     }
 }
 
@@ -27,6 +38,7 @@ const getAllUsers = async (req: Request, res: Response) => {
 
 
 export const userController = {
-    createUser,
-    getAllUsers
+    createUsers,
+    getAllUsers,
+    getUserById
 }
