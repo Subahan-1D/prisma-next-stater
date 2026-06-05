@@ -8,7 +8,7 @@ const createUsers = async (req: Request, res: Response) => {
         res.status(201).json(result)
 
     } catch (error) {
-       res.status(500).send(error)
+        res.status(500).send(error)
     }
 }
 
@@ -19,7 +19,7 @@ const getAllUsers = async (req: Request, res: Response) => {
         console.log("all data fatched successfully", result)
 
     } catch (error) {
-      res.status(500).send(error)
+        res.status(500).send(error)
     }
 }
 
@@ -45,11 +45,23 @@ const updateUser = async (req: Request, res: Response) => {
     }
 }
 
+const deleteUser = async (req: Request, res: Response) => {
+    try {
+        const id = parseInt(req.params.id as string)
+        const result = await userService.deleteUser(id)
+        res.status(201).json(result)
+        console.log("data deleted successfully", result)
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
+
 
 
 export const userController = {
     createUsers,
     getAllUsers,
     getUserById,
-    updateUser
+    updateUser,
+    deleteUser
 }
