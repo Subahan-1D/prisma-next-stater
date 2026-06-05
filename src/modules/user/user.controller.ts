@@ -34,11 +34,22 @@ const getUserById = async (req: Request, res: Response) => {
     }
 }
 
+const updateUser = async (req: Request, res: Response) => {
+    try {
+        const id = parseInt(req.params.id as string)
+        const result = await userService.updateUser(id, req.body)
+        res.status(201).json(result)
+        console.log("data updated successfully", result)
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
 
 
 
 export const userController = {
     createUsers,
     getAllUsers,
-    getUserById
+    getUserById,
+    updateUser
 }

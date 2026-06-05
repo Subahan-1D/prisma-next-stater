@@ -8,8 +8,6 @@ const createUser = async (payload: Prisma.UserCreateInput): Promise<User> => {
     return createdUser
 }
 
-
-
 const getAllUsers = async () => {
     const result = await prisma.user.findMany({
         select: {
@@ -38,8 +36,17 @@ const getUserById = async (id: number) => {
     },)
     return reusult
 }
+
+const updateUser = async (id: number, payload: Prisma.UserUpdateInput) => {
+    const result = await prisma.user.update({
+        where: { id },
+        data: payload
+    })
+    return result
+}
 export const userService = {
     createUser,
     getAllUsers,
-    getUserById
+    getUserById,
+    updateUser
 }
