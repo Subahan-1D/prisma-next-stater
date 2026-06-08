@@ -2,6 +2,7 @@ import compression from "compression";
 import cors from "cors";
 import express from "express";
 import { userRoute } from "./modules/user/user.route";
+import { postRoute } from "./modules/post/post.route";
 
 const app = express();
 
@@ -13,6 +14,11 @@ app.use(express.json()); // Parse incoming JSON requests
 // Importing routes
 
 app.use("/api/v1/user", userRoute)
+app.use("/api/v1/post", postRoute)
+
+
+// Importing routes
+
 app.use(
   cors({
     origin: "http://localhost:3000",
