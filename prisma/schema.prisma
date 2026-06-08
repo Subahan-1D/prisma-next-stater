@@ -25,7 +25,7 @@ model Post {
   id         Int      @id @default(autoincrement())
   title      String
   content    String
-  thumnail   String?
+  thumbnail   String?
   isFeatured Boolean  @default(false)
   tags       String[]
   views      Int      @default(0)

@@ -5,6 +5,6 @@ import { postController } from "./post.controller";
 const router = express.Router();
 
 
-router.get("/", postController.createPost)
+router.post("/", postController.createPost)
 
 export const postRoute = router
