@@ -63,10 +63,18 @@ const updatePost = async (id: number, payload: Prisma.PostUpdateInput) => {
     })
     return post
 }
+
+const deletePost = async (id: number) => {
+    const post = await prisma.post.delete({
+        where: { id }
+    })
+    return post
+}
 export const postService = {
     createPost,
     getAllPosts,
     getPostById,
-    updatePost
+    updatePost,
+    deletePost
 }
 
