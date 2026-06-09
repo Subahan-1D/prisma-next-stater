@@ -12,6 +12,28 @@ const createPost = async (req: Request, res: Response) => {
     }
 }
 
+const getAllPosts = async (req: Request, res: Response) => {
+    try {
+        const result = await postService.getAllPosts()
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
+
+
+const getPostById = async (req: Request, res: Response) => {
+    try {
+        const id = parseInt(req.params.id as string)
+        const result = await postService.getPostById(id)
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
+
 export const postController = {
-    createPost
+    createPost,
+    getAllPosts,
+    getPostById
 }

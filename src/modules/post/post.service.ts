@@ -22,7 +22,42 @@ const createPost = async (payload: Prisma.PostCreateInput): Promise<Post> => {
 }
 
 
-console.log("post service loaded successfully", createPost)
+const getAllPosts = async (): Promise<Post[]> => {
+    const posts = await prisma.post.findMany({
+        include: {
+            author: {
+                select: {
+                    id: true,
+                    name: true,
+                    email: true,
+                    phone: true
+                }
+            }
+        }
+    })
+    return posts
+}
+
+
+const getPostById = async (id: number) => {
+    const post = await prisma.post.findUnique({
+        where: { id },
+        include: {
+            author: {
+                select: {
+                    id: true,
+                    name: true,
+                    email: true,
+                    phone: true
+                }
+            }
+        }
+    })
+    return post
+}
+
 export const postService = {
-    createPost
+    createPost,
+    getAllPosts,
+    getPostById
 }
