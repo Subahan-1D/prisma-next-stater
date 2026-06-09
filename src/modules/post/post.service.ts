@@ -8,11 +8,11 @@ const createPost = async (payload: Prisma.PostCreateInput): Promise<Post> => {
         data: payload,
         include: {
             author: {
-                select :{
-                    id : true,
-                    name : true,
-                    email : true,
-                    phone : true
+                select: {
+                    id: true,
+                    name: true,
+                    email: true,
+                    phone: true
                 }
             }
         }
@@ -56,8 +56,17 @@ const getPostById = async (id: number) => {
     return post
 }
 
+const updatePost = async (id: number, payload: Prisma.PostUpdateInput) => {
+    const post = await prisma.post.update({
+        where: { id },
+        data: payload
+    })
+    return post
+}
 export const postService = {
     createPost,
     getAllPosts,
-    getPostById
+    getPostById,
+    updatePost
 }
+

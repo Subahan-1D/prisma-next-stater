@@ -32,8 +32,19 @@ const getPostById = async (req: Request, res: Response) => {
     }
 }
 
+const updatePost  = async (req : Request, res : Response ) =>{
+    try {
+        const id = parseInt(req.params.id as string)
+        const result = await postService.updatePost(id, req.body)
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
+
 export const postController = {
     createPost,
     getAllPosts,
-    getPostById
+    getPostById,
+    updatePost
 }

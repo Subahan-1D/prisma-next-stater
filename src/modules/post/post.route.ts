@@ -8,5 +8,6 @@ const router = express.Router();
 router.post("/", postController.createPost)
 router.get("/", postController.getAllPosts)
 router.get("/:id", postController.getPostById)
+router.patch("/:id", postController.updatePost) 
 
 export const postRoute = router
