@@ -22,19 +22,9 @@ const createPost = async (payload: Prisma.PostCreateInput): Promise<Post> => {
 }
 
 
-const getAllPosts = async (): Promise<Post[]> => {
-    const posts = await prisma.post.findMany({
-        include: {
-            author: {
-                select: {
-                    id: true,
-                    name: true,
-                    email: true,
-                    phone: true
-                }
-            }
-        }
-    })
+const getAllPosts = async ({ page, limit }: { page: number, limit: number }): Promise<Post[]> => {
+    console.log({page, limit})
+    const posts = await prisma.post.findMany({})
     return posts
 }
 

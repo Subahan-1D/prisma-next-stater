@@ -14,7 +14,9 @@ const createPost = async (req: Request, res: Response) => {
 
 const getAllPosts = async (req: Request, res: Response) => {
     try {
-        const result = await postService.getAllPosts()
+        const page = Number(req.query.page) || 1;
+        const limit = Number(req.query.limit) || 10;
+        const result = await postService.getAllPosts({ page, limit })
         res.status(200).json(result)
     } catch (error) {
         res.status(500).send(error)
@@ -32,7 +34,7 @@ const getPostById = async (req: Request, res: Response) => {
     }
 }
 
-const updatePost  = async (req : Request, res : Response ) =>{
+const updatePost = async (req: Request, res: Response) => {
     try {
         const id = parseInt(req.params.id as string)
         const result = await postService.updatePost(id, req.body)
@@ -41,16 +43,16 @@ const updatePost  = async (req : Request, res : Response ) =>{
         res.status(500).send(error)
     }
 }
- const deletePost = async (req : Request, res : Response ) =>{
-   try {
-          const id = parseInt(req.params.id as string)
-          const result = await postService.deletePost(id)
-          res.status(201).json(result)
-          console.log("data deleted successfully", result)
-      } catch (error) {
-          res.status(500).send(error)
-      }
- }
+const deletePost = async (req: Request, res: Response) => {
+    try {
+        const id = parseInt(req.params.id as string)
+        const result = await postService.deletePost(id)
+        res.status(201).json(result)
+        console.log("data deleted successfully", result)
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
 
 export const postController = {
     createPost,
