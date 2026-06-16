@@ -22,7 +22,7 @@ const createPost = async (payload: Prisma.PostCreateInput): Promise<Post> => {
 }
 
 
-const getAllPosts = async ({ page = 1, limit = 10, search, isFeatured }: { page?: number, limit?: number, search?: string, isFeatured?: boolean }): Promise<Post[]> => {
+const getAllPosts = async ({ page = 1, limit = 10, search, isFeatured, tags }: { page?: number, limit?: number, search?: string, isFeatured?: boolean, tags?: string[] }): Promise<Post[]> => {
     console.log({ page, limit })
     const skip = (page - 1) * limit;
     console.log({ isFeatured })
