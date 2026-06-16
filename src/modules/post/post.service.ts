@@ -55,9 +55,20 @@ const getAllPosts = async ({ page = 1, limit = 10, search, isFeatured, tags }: {
     return posts
 }
 
-
 const getPostById = async (id: number) => {
-    const post = await prisma.post.findUnique({
+   await prisma.post.update({
+        where: { id },
+        data: {
+            views: {
+                increment: 1
+            }
+        },
+        include: {
+            author: true
+        }
+    });
+
+     const result = await prisma.post.findUnique({
         where: { id },
         include: {
             author: {
@@ -70,8 +81,11 @@ const getPostById = async (id: number) => {
             }
         }
     })
-    return post
-}
+    return result
+
+};
+
+
 
 const updatePost = async (id: number, payload: Prisma.PostUpdateInput) => {
     const post = await prisma.post.update({
