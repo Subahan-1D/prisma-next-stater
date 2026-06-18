@@ -3,6 +3,7 @@ import cors from "cors";
 import express from "express";
 import { userRoute } from "./modules/user/user.route";
 import { postRoute } from "./modules/post/post.route";
+import { authRoute } from "./modules/auths/auth.route";
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(express.json()); // Parse incoming JSON requests
 
 app.use("/api/v1/user", userRoute)
 app.use("/api/v1/post", postRoute)
+app.use("/api/v1/auth", authRoute)
 
 
 // Importing routes
