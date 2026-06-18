@@ -56,6 +56,7 @@ const getAllPosts = async ({ page = 1, limit = 10, search, isFeatured, tags }: {
 }
 
 const getPostById = async (id: number) => {
+    
 
 
     const result = await prisma.$transaction(async (tx) => {
