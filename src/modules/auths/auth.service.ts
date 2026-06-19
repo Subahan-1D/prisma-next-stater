@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client"
+import { Prisma} from "@prisma/client"
 import { prisma } from "../../config/db"
 
 
@@ -22,6 +22,11 @@ const loginwithEmailAndPasword = async ({ email, password }: { email: string, pa
         throw new Error("Invalid password")
     }
 }
+
+const authWithGoogle = async(data :Prisma.UserCreateInput) =>{
+
+}
 export const authService = {
-    loginwithEmailAndPasword
+    loginwithEmailAndPasword,
+    authWithGoogle
 }
