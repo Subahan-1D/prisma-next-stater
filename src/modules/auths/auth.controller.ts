@@ -23,6 +23,10 @@ const authenticateWithGoogle = async (req: Request, res: Response) => {
     }
 }
 
+
+
+
+ 
 export const authController = {
     loginWithEmailAndPassword,
     authenticateWithGoogle
